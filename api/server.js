@@ -5,7 +5,7 @@ const server = express();
 
 server.use(express.json());
 
-server.use('/api/users', usersRouter);
+server.use('/api', usersRouter);
 
 server.use('*', (req, res) => {
     res.status(200).send('Welcome to an irrelevent path!');

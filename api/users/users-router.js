@@ -3,10 +3,19 @@ const Users = require('./users-model');
 
 const router = express();
 
-router.get('/', (req, res) => {
+router.get('/users', (req, res) => {
     const users = Users.getUsers();
     res.status(200).json(users);
 });
+
+router.post('/register', (req, res) => {
+    const response = Users.createUser(req.body);
+    res.status(201).json(response);
+})
+
+router.post('/login', (req, res) => {
+    
+})
 
 router.use((error, req, res, next) => {
     const {status, message} = error;
