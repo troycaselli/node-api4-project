@@ -1,6 +1,7 @@
 module.exports = {
     getUsers,
     createUser,
+    loginUser
 }
 let idCount = 7;
 
@@ -22,4 +23,16 @@ function createUser(newUser) {
     newUser.id = ++idCount;
     users.push(newUser);
     return newUser;
+}
+
+function loginUser(username, password) {
+    for(let i = 0; i < users.length; i++) {
+        if(
+            users[i].username === username 
+            && users[i].password === password
+        ) {
+            return true;
+        }
+    }
+    return false;
 }

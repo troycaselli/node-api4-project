@@ -13,8 +13,17 @@ router.post('/register', (req, res) => {
     res.status(201).json(response);
 })
 
-router.post('/login', (req, res) => {
-    
+router.post('/login', (req, res, next) => {
+    const {username, password} = req.body;
+    if(!username || !password) {
+        next({status: 401, message: 'username and password required'})
+    }
+    const info = Users.loginUser(username, password);
+    if(info) {
+        res.status(200).json({message: `Welcome, ${username}!`});
+    } else {
+        next({status: 401, message: 'Incorrect username and/or password'});
+    }
 })
 
 router.use((error, req, res, next) => {
