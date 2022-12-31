@@ -10,12 +10,13 @@ router.get('/users', (req, res) => {
 });
 
 router.post('/register', checkValues, (req, res) => {
-    const response = Users.createUser(req.body);
+    console.log(req.username, req.password)
+    const response = Users.createUser({username: req.username, password: req.password});
     res.status(201).json(response);
 })
 
 router.post('/login', checkValues, (req, res, next) => {
-    const {username, password} = req.body;
+    const {username, password} = req;
     // if(!username || !password) {
     //     next({status: 401, message: 'username and password required'})
     // }
