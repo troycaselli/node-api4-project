@@ -10,7 +10,6 @@ router.get('/users', (req, res) => {
 });
 
 router.post('/register', checkValues, (req, res) => {
-    console.log(req.username, req.password)
     const response = Users.createUser({username: req.username, password: req.password});
     res.status(201).json(response);
 })
